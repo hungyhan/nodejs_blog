@@ -1,6 +1,7 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
 const morgan = require("morgan");
+const path = require("path");
 const app = express();
 const port = 3000;
 
@@ -8,12 +9,21 @@ const port = 3000;
 app.use(morgan("combined"));
 
 //template engine
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
-app.set("views", "./src/resources/views");
+app.engine(
+  "hbs",
+  engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+  }),
+);
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "resources/views"));
 
 app.get("/", (req, res) => {
   res.render("home");
+});
+app.get("/news", (req, res) => {
+  res.render("news");
 });
 
 app.listen(port, () => {
