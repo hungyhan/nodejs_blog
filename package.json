@@ -19,7 +19,11 @@
   "type": "commonjs",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js",
+    "dev:server": "nodemon --inspect src/index.js",
+    "dev:sass": "sass --watch src/resources/scss:src/public/css",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:sass\"",
+    "build:css": "sass src/resources/scss:src/public/css --style=compressed",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -27,6 +31,7 @@
     "express-handlebars": "^8.0.6"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.14",
     "sass": "^1.97.3"
