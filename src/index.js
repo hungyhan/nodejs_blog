@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+
+// 👇 BẮT BUỘC PHẢI CÓ
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 //http logger
@@ -28,8 +32,12 @@ app.get("/news", (req, res) => {
   res.render("news");
 });
 app.get("/search", (req, res) => {
-  console.log(req.query);
   res.render("search");
+});
+app.post("/search", (req, res) => {
+  console.log("POST /search");
+  console.log(req.body);
+  res.send('');
 });
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
