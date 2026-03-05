@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+//connect to database
+const db = require("./config/db");
+db.connectToDatabase();
+
 // 👇 BẮT BUỘC PHẢI CÓ
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,12 +26,12 @@ app.engine(
   }),
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 //route init
 const route = require("./routes/index");
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
