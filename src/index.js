@@ -15,7 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 //http logger
-app.use(morgan("combined"));
+if (process.env.NODE_ENV === "development") {
+  const morgan = require("morgan");
+  app.use(morgan("dev"));
+}
+// app.use(morgan("combined"));
 
 //template engine handlebars
 app.engine(

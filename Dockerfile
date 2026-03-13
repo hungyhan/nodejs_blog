@@ -1,20 +1,14 @@
-# Base image
-FROM node:18
+FROM node:18-alpine
 
-# Tạo thư mục app trong container
 WORKDIR /app
 
-# Copy package.json trước để tận dụng cache
 COPY package*.json ./
 
-# Cài dependencies
-RUN npm install
+RUN npm install --production
 
-# Copy toàn bộ source code
 COPY . .
 
-# Expose port (Express thường dùng 3000)
+
 EXPOSE 3000
 
-# Start app
-CMD ["npm", "start"]
+CMD ["npm","start"]
