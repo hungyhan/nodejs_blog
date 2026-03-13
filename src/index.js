@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "development") {
 }
 // app.use(morgan("combined"));
 
-//template engine handlebars
+//template engine handlebars 
 app.engine(
   "hbs",
   engine({
