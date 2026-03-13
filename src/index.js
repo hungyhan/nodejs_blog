@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-//http logger
+//http logger đang để tạm ở production để test, sau này sẽ để ở development
 if (process.env.NODE_ENV === "development") {
   const morgan = require("morgan");
   app.use(morgan("dev"));
