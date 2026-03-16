@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-blog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-blog
+  template:
+    metadata:
+      labels:
+        app: nodejs-blog
+    spec:
+      containers:
+      - name: nodejs-blog
+        image: mhybh9597/nodejs-devops-lab:latest
+        ports:
+        - containerPort: 3000
